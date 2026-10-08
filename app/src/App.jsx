@@ -24,6 +24,10 @@ function App() {
     );
   }
 
+  function deleteTodo(id) {
+    setTodos(todos.filter((t) => t.id !== id));
+  }
+
   return (
     <main className="app">
       <h1>To Do</h1>
@@ -46,6 +50,9 @@ function App() {
               onChange={() => toggleCompleted(t.id)}
             />
             <span>{t.text}</span>
+            <button type="button" onClick={() => deleteTodo(t.id)}>
+              Delete
+            </button>
           </li>
         ))}
       </ul>
