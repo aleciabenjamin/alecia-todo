@@ -43,21 +43,32 @@ function App() {
       <p>Number of tasks: {todos.length}</p>
       <ul className="todo-list">
         {todos.map((t) => (
-          <li key={t.id} className={t.completed ? "todo completed" : "todo"}>
-            <input
-              type="checkbox"
-              checked={t.completed}
-              onChange={() => toggleCompleted(t.id)}
-            />
-            <span>{t.text}</span>
-            <button type="button" onClick={() => deleteTodo(t.id)}>
-              Delete
-            </button>
-          </li>
+          <TodoItem
+            key={t.id}
+            todo={t}
+            onToggle={toggleCompleted}
+            onDelete={deleteTodo}
+          />
         ))}
       </ul>
     </main>
   );
+  function TodoItem({ todo, onToggle, onDelete }) {
+    return (
+      <li className={todo.completed ? "completed" : "todo"}>
+        <input
+          type="checkbox"
+          checked={todo.completed}
+          onChange={() => onToggle(todo.id)}
+        />
+        <p className="todo-text">{todo.text}</p>
+
+        <button onClick={() => onDelete(todo.id)} className="delete-btn">
+          Delete
+        </button>
+      </li>
+    );
+  }
 }
 
 export default App;
