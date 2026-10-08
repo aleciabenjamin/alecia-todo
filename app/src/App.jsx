@@ -8,14 +8,9 @@ function App() {
     { id: 3, text: "Book winter tyres", completed: false },
     { id: 4, text: "Buy new pillows", completed: false },
   ]);
-  const [text, setText] = useState("");
 
-  function addTodo(e) {
-    e.preventDefault();
-    const newTodo = text.trim();
-    if (!newTodo) return;
+  function handleAddTodo(newTodo) {
     setTodos([...todos, { id: Date.now(), text: newTodo, completed: false }]);
-    setText("");
   }
 
   function toggleCompleted(id) {
@@ -31,15 +26,7 @@ function App() {
   return (
     <main className="app">
       <h1>To Do</h1>
-      <form onSubmit={addTodo}>
-        <input
-          type="text"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          placeholder="Add a new task..."
-        />
-        <button type="submit">Add Task</button>
-      </form>
+      <TodoForm onAdd={handleAddTodo} />
       <p>Number of tasks: {todos.length}</p>
       <ul className="todo-list">
         {todos.map((t) => (
@@ -67,6 +54,29 @@ function App() {
           Delete
         </button>
       </li>
+    );
+  }
+  function TodoForm({ onAdd }) {
+    const [text, setText] = useState("");
+
+    function handleSubmit(e) {
+      e.preventDefault();
+      const newTodo = text.trim();
+      if (!newTodo) return;
+      onAdd(newTodo);
+      setText("");
+    }
+
+    return (
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+          placeholder="Add a new task..."
+        />
+        <button type="submit">Add Task</button>
+      </form>
     );
   }
 }
