@@ -25,21 +25,30 @@ function App() {
 
   return (
     <main className="app">
-      <h1>To Do</h1>
+      <h1>To Do List</h1>
       <TodoForm onAdd={handleAddTodo} />
-      <p>Number of tasks: {todos.length}</p>
-      <ul className="todo-list">
-        {todos.map((t) => (
-          <TodoItem
-            key={t.id}
-            todo={t}
-            onToggle={toggleCompleted}
-            onDelete={deleteTodo}
-          />
-        ))}
-      </ul>
+      <p className="task-counter">Number of tasks: {todos.length}</p>
+      {todos.length === 0 ? (
+        /* IF: The list is empty, show this beautiful success message */
+        <div className="empty-state-message">
+          🎉 Well done! You've done it all! Time to chill.
+        </div>
+      ) : (
+        /* ELSE: Show the regular list mapping over your tasks */
+        <ul className="todo-list">
+          {todos.map((t) => (
+            <TodoItem
+              key={t.id}
+              todo={t}
+              onToggle={toggleCompleted}
+              onDelete={deleteTodo}
+            />
+          ))}
+        </ul>
+      )}
     </main>
   );
+
   function TodoItem({ todo, onToggle, onDelete }) {
     return (
       <li className={todo.completed ? "completed" : "todo"}>
