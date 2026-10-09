@@ -1,5 +1,7 @@
 import { useState } from "react";
 import "./App.css";
+import TodoForm from "./TodoForm";
+import TodoItem from "./TodoItem";
 
 function App() {
   const [todos, setTodos] = useState([
@@ -29,12 +31,10 @@ function App() {
       <TodoForm onAdd={handleAddTodo} />
       <p className="task-counter">Number of tasks: {todos.length}</p>
       {todos.length === 0 ? (
-        /* IF: The list is empty, show this beautiful success message */
         <div className="empty-state-message">
           🎉 Well done! You've done it all! Time to chill.
         </div>
       ) : (
-        /* ELSE: Show the regular list mapping over your tasks */
         <ul className="todo-list">
           {todos.map((t) => (
             <TodoItem
@@ -48,46 +48,6 @@ function App() {
       )}
     </main>
   );
-
-  function TodoItem({ todo, onToggle, onDelete }) {
-    return (
-      <li className={todo.completed ? "completed" : "todo"}>
-        <input
-          type="checkbox"
-          checked={todo.completed}
-          onChange={() => onToggle(todo.id)}
-        />
-        <p className="todo-text">{todo.text}</p>
-
-        <button onClick={() => onDelete(todo.id)} className="delete-btn">
-          Delete
-        </button>
-      </li>
-    );
-  }
-  function TodoForm({ onAdd }) {
-    const [text, setText] = useState("");
-
-    function handleSubmit(e) {
-      e.preventDefault();
-      const newTodo = text.trim();
-      if (!newTodo) return;
-      onAdd(newTodo);
-      setText("");
-    }
-
-    return (
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          placeholder="Add a new task..."
-        />
-        <button type="submit">Add Task</button>
-      </form>
-    );
-  }
 }
 
 export default App;
