@@ -13,10 +13,12 @@ body  {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  margin-top: 50px;
   color: #1D2D50;
-  padding: 30px;
   border-radius: 12px;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 h1 {
@@ -203,12 +205,12 @@ h1::after {
 	display: flex;
 	gap: 10px;
 	margin-bottom: 20px;
+	justify-content: center;
 }
 
 .filter-buttons button {
   flex: 1;
   max-width: 140px;
-  padding: 8px 16px;
   background-color: rgba(255, 255, 255, 0.88);
   color: #1D2D50;
   border: 2px solid #E2B4BD;
@@ -218,6 +220,8 @@ h1::after {
   cursor: pointer;
   transition: all 0.2s ease;
   box-sizing: border-box;
+  padding: 8px 12px;
+  transition: all 0.2s ease;
 }
 
 .filter-buttons button:hover {
@@ -234,4 +238,56 @@ h1::after {
 
 .filter-buttons button:active {
   transform: scale(0.97);
+}
+
+.current-date {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1D2D50;
+  margin-top: -15px;
+  margin-bottom: 25px;
+  opacity: 0.85;
+  text-align: center;
+}
+
+.app form,
+.todo-list,
+.filter-buttons,
+.empty-state-message {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* --- MOBILE SPECIFIC STYLES --- */
+@media (max-width: 480px) {
+  .app {
+    padding: 15px;
+    margin-top: 10px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  .app form {
+    flex-direction: column;
+  }
+
+  .app form button {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .filter-buttons {
+    gap: 6px;
+  }
+
+  .filter-buttons button {
+    font-size: 12px;
+    padding: 8px 4px;
+  }
+
+  .todo-text {
+    word-break: break-word;
+  }
 }

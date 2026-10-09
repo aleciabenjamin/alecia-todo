@@ -13,6 +13,13 @@ function App() {
 
   const [filter, setFilter] = useState("all");
 
+	const currentDate = new Date().toLocaleDateString("en-SE", {
+		weekday: "long",
+		year: "numeric",
+		month: "long",
+		day: "numeric",
+	});
+
   function handleAddTodo(newTodo) {
     setTodos([...todos, { id: Date.now(), text: newTodo, completed: false }]);
   }
@@ -30,12 +37,13 @@ function App() {
   const filteredTodos = todos.filter((todo) => {
     if (filter === "active") return !todo.completed;
     if (filter === "completed") return todo.completed;
-    return true; // "all"
+    return true;
   });
 
   return (
     <main className="app">
       <h1>To Do List</h1>
+			<p className="current-date">{currentDate}</p>
       <TodoForm onAdd={handleAddTodo} />
       <p className="task-counter">Number of tasks: {todos.length}</p>
       <div className="filter-buttons">
