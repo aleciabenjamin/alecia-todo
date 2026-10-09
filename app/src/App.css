@@ -68,9 +68,9 @@ h1::after {
 .completed {
 	border-color: #1D2D50;
 	text-decoration: line-through;
-  color: #8A9BB4;
+  color: #1D2D50;
 	border: 4px solid #E2B4BD;
-	background-color: rgba(22, 136, 41, 0.88);
+	background-color: rgba(32, 185, 58, 0.88);
 	padding: 10px;
   margin-bottom: 8px;
 	border-radius: 6px;
@@ -197,4 +197,41 @@ h1::after {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.filter-buttons {
+	display: flex;
+	gap: 10px;
+	margin-bottom: 20px;
+}
+
+.filter-buttons button {
+  flex: 1;
+  max-width: 140px;
+  padding: 8px 16px;
+  background-color: rgba(255, 255, 255, 0.88);
+  color: #1D2D50;
+  border: 2px solid #E2B4BD;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.filter-buttons button:hover {
+  border-color: #1D2D50;
+  background-color: #ffffff;
+}
+
+.filter-buttons button.active {
+  background-color: #1D2D50;
+  color: #ffffff;
+  border-color: #1D2D50;
+  box-shadow: 0 2px 6px rgba(29, 45, 80, 0.15);
+}
+
+.filter-buttons button:active {
+  transform: scale(0.97);
 }

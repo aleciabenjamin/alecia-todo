@@ -11,6 +11,8 @@ function App() {
     { id: 4, text: "Buy new pillows", completed: false },
   ]);
 
+  const [filter, setFilter] = useState("all");
+
   function handleAddTodo(newTodo) {
     setTodos([...todos, { id: Date.now(), text: newTodo, completed: false }]);
   }
@@ -25,18 +27,46 @@ function App() {
     setTodos(todos.filter((t) => t.id !== id));
   }
 
+  const filteredTodos = todos.filter((todo) => {
+    if (filter === "active") return !todo.completed;
+    if (filter === "completed") return todo.completed;
+    return true; // "all"
+  });
+
   return (
     <main className="app">
       <h1>To Do List</h1>
       <TodoForm onAdd={handleAddTodo} />
       <p className="task-counter">Number of tasks: {todos.length}</p>
-      {todos.length === 0 ? (
+      <div className="filter-buttons">
+        <button
+          className={filter === "all" ? "active" : ""}
+          onClick={() => setFilter("all")}
+        >
+          All
+        </button>
+        <button
+          className={filter === "active" ? "active" : ""}
+          onClick={() => setFilter("active")}
+        >
+          Active
+        </button>
+        <button
+          className={filter === "completed" ? "active" : ""}
+          onClick={() => setFilter("completed")}
+        >
+          Completed
+        </button>
+      </div>
+      {filteredTodos.length === 0 ? (
         <div className="empty-state-message">
-          🎉 Well done! You've done it all! Time to chill.
+          {todos.length === 0
+            ? "🎉 Well done! You've done it all! Time to chill."
+            : "No tasks found in this view."}
         </div>
       ) : (
         <ul className="todo-list">
-          {todos.map((t) => (
+          {filteredTodos.map((t) => (
             <TodoItem
               key={t.id}
               todo={t}
