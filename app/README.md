@@ -1,3 +1,5 @@
+https://funet.sharepoint.com/sites/MjukvaruutvecklareYhdistans/_layouts/15/stream.aspx?id=%2Fsites%2FMjukvaruutvecklareYhdistans%2FDelade%20dokument%2FGeneral%2FRecordings%2FMeeting%20in%20General%2D20261009%5F211852%2DMeeting%20Recording%2Emp4&nav=eyJwbGF5YmFja09wdGlvbnMiOnsic3RhcnRUaW1lSW5TZWNvbmRzIjo0MTQuODI3MjU2fX0%3D&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E8c74cef6%2Daaa7%2D42cd%2Dae55%2D21824d2cbb5c
+
 ### React + Vite - TO DO app
 
 ***1. State-hantering: Hur håller din app reda på vilka uppgifter som finns och om de är klara? Vad händer med gränssnittet när datan uppdateras?***\
